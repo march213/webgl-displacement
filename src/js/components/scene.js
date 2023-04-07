@@ -13,6 +13,7 @@ class Scene {
   guiObj = {
     offset: 1,
   };
+
   constructor() {
     this.setGUI();
     this.setScene();
@@ -25,7 +26,7 @@ class Scene {
       .onChange(this.guiChange);
   }
 
-  setScene() {
+  async setScene() {
     this.el = document.querySelector('.scene');
     const canvasEl = document.querySelector('.scene__container__canvas');
     this.renderer = new Renderer({
@@ -50,11 +51,11 @@ class Scene {
     const geometry = new Triangle(gl);
 
     // // To load files like textures, do :²
-    LoaderManager.load(
+    await LoaderManager.load(
       [
         {
           name: 'image-1',
-          texture: './img/image-1.jpg',
+          texture: '../../public/img/image-1.jpg',
         },
       ],
       gl,
@@ -72,6 +73,9 @@ class Scene {
         },
         uOffset: {
           value: this.guiObj.offset,
+        },
+        uTexture1: {
+          value: LoaderManager.assets['image-1'],
         },
       },
     });

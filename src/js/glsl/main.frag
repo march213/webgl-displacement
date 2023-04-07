@@ -3,8 +3,8 @@ uniform float uTime;
 uniform vec3 uColor;
 uniform float uOffset;
 varying vec2 vUv;
+uniform sampler2D uTexture1;
 
 void main() {
-  gl_FragColor.rgb = 0.3 + 0.3 * cos(vUv.xyx * uOffset + uTime) + uColor;
-  gl_FragColor.a = 1.0;
+  gl_FragColor = texture2D(uTexture1, vUv);
 }
