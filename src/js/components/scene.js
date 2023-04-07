@@ -62,6 +62,10 @@ class Scene {
           name: 'image-2',
           texture: '../../public/img/image-2.jpg',
         },
+        {
+          name: 'displacement-map',
+          texture: '../../public/img/displacement-map.jpg',
+        },
       ],
       gl,
     );
@@ -102,6 +106,9 @@ class Scene {
         },
         uvOffset2: {
           value: uvCover2.offset,
+        },
+        uDisplacementTexture: {
+          value: LoaderManager.assets['displacement-map'],
         },
       },
     });
