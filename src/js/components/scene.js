@@ -5,6 +5,7 @@ import {
 import vertex from '@/js/glsl/main.vert';
 import fragment from '@/js/glsl/main.frag';
 import LoaderManager from '@/js/managers/LoaderManager';
+import { getCoverUV } from '../utils/ogl';
 
 class Scene {
   renderer;
@@ -61,6 +62,8 @@ class Scene {
       gl,
     );
 
+    const uvCover1 = getCoverUV(gl, LoaderManager.assets['image-1'].image);
+
     this.program = new Program(gl, {
       vertex,
       fragment,
@@ -76,6 +79,12 @@ class Scene {
         },
         uTexture1: {
           value: LoaderManager.assets['image-1'],
+        },
+        uvRepeat1: {
+          value: uvCover1.repeat,
+        },
+        uvOffset1: {
+          value: uvCover1.offset,
         },
       },
     });
