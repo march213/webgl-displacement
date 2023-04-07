@@ -12,7 +12,7 @@ class Scene {
   mesh;
   program;
   guiObj = {
-    offset: 1,
+    offset: 0.5,
   };
 
   constructor() {
@@ -23,7 +23,8 @@ class Scene {
 
   setGUI() {
     const gui = new GUI();
-    gui.add(this.guiObj, 'offset', 0.5, 4)
+    gui
+      .add(this.guiObj, 'offset', 0.1, 1)
       .onChange(this.guiChange);
   }
 
@@ -107,6 +108,8 @@ class Scene {
         uvOffset2: {
           value: uvCover2.offset,
         },
+
+        // displacement map
         uDisplacementTexture: {
           value: LoaderManager.assets['displacement-map'],
         },
