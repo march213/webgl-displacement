@@ -58,11 +58,16 @@ class Scene {
           name: 'image-1',
           texture: '../../public/img/image-1.jpg',
         },
+        {
+          name: 'image-2',
+          texture: '../../public/img/image-2.jpg',
+        },
       ],
       gl,
     );
 
     const uvCover1 = getCoverUV(gl, LoaderManager.assets['image-1'].image);
+    const uvCover2 = getCoverUV(gl, LoaderManager.assets['image-2'].image);
 
     this.program = new Program(gl, {
       vertex,
@@ -77,6 +82,7 @@ class Scene {
         uOffset: {
           value: this.guiObj.offset,
         },
+        // first image
         uTexture1: {
           value: LoaderManager.assets['image-1'],
         },
@@ -85,6 +91,17 @@ class Scene {
         },
         uvOffset1: {
           value: uvCover1.offset,
+        },
+
+        // second image
+        uTexture2: {
+          value: LoaderManager.assets['image-2'],
+        },
+        uvRepeat2: {
+          value: uvCover2.repeat,
+        },
+        uvOffset2: {
+          value: uvCover2.offset,
         },
       },
     });
