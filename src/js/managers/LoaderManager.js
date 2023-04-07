@@ -2,8 +2,10 @@ import { Texture } from 'ogl';
 
 class LoaderManager {
   constructor() {
+    // Dictionary of assets, can be different type, gltf, texture, img, font,
+    // feel free to make a Enum if using TypeScript
     this.assets = {
-    }; // Dictionary of assets, can be different type, gltf, texture, img, font, feel free to make a Enum if using TypeScript
+    };
   }
 
   load = (data, gl) => {

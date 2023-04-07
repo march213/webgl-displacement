@@ -4,7 +4,7 @@ import {
 } from 'ogl';
 import vertex from '@/js/glsl/main.vert';
 import fragment from '@/js/glsl/main.frag';
-// import LoaderManager from '@/js/managers/LoaderManager'
+import LoaderManager from '@/js/managers/LoaderManager';
 
 class Scene {
   renderer;
@@ -26,7 +26,8 @@ class Scene {
   }
 
   setScene() {
-    const canvasEl = document.querySelector('.scene');
+    this.el = document.querySelector('.scene');
+    const canvasEl = document.querySelector('.scene__container__canvas');
     this.renderer = new Renderer({
       dpr: Math.min(window.devicePixelRatio, 2), canvas: canvasEl,
     });
@@ -49,18 +50,15 @@ class Scene {
     const geometry = new Triangle(gl);
 
     // // To load files like textures, do :²
-    // LoaderManager.load(
-    //   [
-    //     {
-    //       name: 'matcap',
-    //       texture: './img/matcap.png',
-    //     },
-    //   ],
-    //   gl
-    // ).then(() => {
-    //   // do something
-    //   console.log(LoaderManager.assets)
-    // })
+    LoaderManager.load(
+      [
+        {
+          name: 'image-1',
+          texture: './img/image-1.jpg',
+        },
+      ],
+      gl,
+    );
 
     this.program = new Program(gl, {
       vertex,
@@ -89,7 +87,7 @@ class Scene {
   }
 
   handleResize = () => {
-    this.renderer.setSize(window.innerWidth, window.innerHeight);
+    this.renderer.setSize(this.el.offsetWidth, this.el.offsetHeight);
   };
 
   handleRAF = (t) => {
